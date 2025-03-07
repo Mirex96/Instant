@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Instant
-//
-//  Created by Станислав Витальевич on 07.03.2025.
-//
-
 import UIKit
 
 @main

@@ -3,19 +3,19 @@ import UIKit
 
 extension UIColor {
     
-    static var primary: UIColor {
+    static var primaryColor: UIColor {
         return UIColor(named: "primary")!
     }
     
-    static var secondary: UIColor {
+    static var secondaryColor: UIColor {
         return UIColor(named: "secondary")!
     }
     
-    static var bubbleReceived: UIColor {
+    static var bubbleReceivedColor: UIColor {
         return UIColor(named: "bubble-received")!
     }
     
-    static var bubbleSent: UIColor {
+    static var bubbleSentColor: UIColor {
         return UIColor(named: "bubble-sent")!
     }
     

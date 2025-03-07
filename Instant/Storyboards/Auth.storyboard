@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jb9-VD-yjj">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,7 +12,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="C6e-wW-j10">
             <objects>
-                <viewController storyboardIdentifier="SignInViewController" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="jb9-VD-yjj" customClass="SignInViewController" customModule="ChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="jb9-VD-yjj" customClass="SignInViewController" customModule="Instant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2SI-EB-ZHS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,9 +62,9 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjr-Or-Vdg" customClass="PrimaryButton" customModule="ChatApp" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjr-Or-Vdg" customClass="PrimaryButton" customModule="Instant" customModuleProvider="target">
                                                         <rect key="frame" x="25" y="328" width="343" height="45"/>
-                                                        <color key="backgroundColor" red="0.25490196079999999" green="0.39607843139999999" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" name="secondaryColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="HjE-nn-pPa"/>
                                                         </constraints>
@@ -115,12 +114,30 @@
                                                     <constraint firstAttribute="trailing" secondItem="r2H-GM-Eof" secondAttribute="trailing" constant="25" id="rnK-gy-DeN"/>
                                                 </constraints>
                                             </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="WLg-eg-76S">
+                                                <rect key="frame" x="169" y="80" width="55" height="55"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="55" id="f8K-1a-nvw"/>
+                                                    <constraint firstAttribute="height" constant="55" id="oho-j3-lFJ"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cER-OB-ren">
+                                                <rect key="frame" x="25" y="155" width="343" height="40.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="SnellRoundhand-Black" family="Snell Roundhand" pointSize="32"/>
+                                                <color key="textColor" name="textfield-background"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="primary"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="cER-OB-ren" secondAttribute="trailing" constant="25" id="23R-ux-ryk"/>
+                                            <constraint firstItem="cER-OB-ren" firstAttribute="top" secondItem="WLg-eg-76S" secondAttribute="bottom" constant="20" id="JHD-rj-YhF"/>
                                             <constraint firstAttribute="trailing" secondItem="ONf-9R-ZEs" secondAttribute="trailing" id="Mm4-uS-go4"/>
+                                            <constraint firstItem="cER-OB-ren" firstAttribute="leading" secondItem="jEx-7v-pme" secondAttribute="leading" constant="25" id="b4T-QX-5Uc"/>
                                             <constraint firstItem="ONf-9R-ZEs" firstAttribute="leading" secondItem="jEx-7v-pme" secondAttribute="leading" id="goy-29-qh5"/>
                                             <constraint firstAttribute="bottom" secondItem="ONf-9R-ZEs" secondAttribute="bottom" id="oZr-7X-VqR"/>
+                                            <constraint firstItem="WLg-eg-76S" firstAttribute="centerX" secondItem="jEx-7v-pme" secondAttribute="centerX" id="rT1-Oj-Eto"/>
+                                            <constraint firstItem="WLg-eg-76S" firstAttribute="top" secondItem="jEx-7v-pme" secondAttribute="top" constant="80" id="z5d-YJ-v01"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -164,7 +181,7 @@
         <!--Create Account View Controller-->
         <scene sceneID="vKy-Tc-lLv">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="uTb-Z8-Alp" customClass="CreateAccountViewController" customModule="ChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="uTb-Z8-Alp" customClass="CreateAccountViewController" customModule="Instant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nXG-Zm-h4w">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,9 +240,9 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iom-bK-Trp" customClass="PrimaryButton" customModule="ChatApp" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iom-bK-Trp" customClass="PrimaryButton" customModule="Instant" customModuleProvider="target">
                                                         <rect key="frame" x="25" y="433.66666666666669" width="343" height="45"/>
-                                                        <color key="backgroundColor" red="0.25490196079999999" green="0.39607843139999999" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" name="secondaryColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="ZWa-VB-BV1"/>
                                                         </constraints>
@@ -287,11 +304,30 @@
                                                     <constraint firstItem="QXB-Qs-jET" firstAttribute="top" secondItem="Den-V5-buU" secondAttribute="bottom" constant="35" id="zd4-50-mHr"/>
                                                 </constraints>
                                             </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="6Yq-Nj-zxG">
+                                                <rect key="frame" x="169" y="80" width="55" height="55"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="55" id="0Kb-ng-PCL"/>
+                                                    <constraint firstAttribute="height" constant="55" id="8ki-e7-U23"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0UQ-mM-h1d">
+                                                <rect key="frame" x="25" y="155" width="343" height="41"/>
+                                                <fontDescription key="fontDescription" name="SnellRoundhand-Black" family="Snell Roundhand" pointSize="32"/>
+                                                <color key="textColor" name="textfield-background"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <viewLayoutGuide key="safeArea" id="NZh-DC-NYB"/>
                                         <color key="backgroundColor" name="primary"/>
                                         <constraints>
+                                            <constraint firstItem="0UQ-mM-h1d" firstAttribute="centerX" secondItem="0Th-oj-zrg" secondAttribute="centerX" id="Gbb-ZQ-z5t"/>
+                                            <constraint firstItem="0UQ-mM-h1d" firstAttribute="top" secondItem="6Yq-Nj-zxG" secondAttribute="bottom" constant="20" id="IgO-wU-3eg"/>
                                             <constraint firstAttribute="bottom" secondItem="Kh9-sR-lOW" secondAttribute="bottom" id="UtP-hF-QFn"/>
+                                            <constraint firstItem="0UQ-mM-h1d" firstAttribute="leading" secondItem="NZh-DC-NYB" secondAttribute="leading" constant="25" id="Utd-a9-wDm"/>
+                                            <constraint firstItem="6Yq-Nj-zxG" firstAttribute="top" secondItem="0Th-oj-zrg" secondAttribute="top" constant="80" id="Znd-oq-T0W"/>
+                                            <constraint firstItem="NZh-DC-NYB" firstAttribute="trailing" secondItem="0UQ-mM-h1d" secondAttribute="trailing" constant="25" id="cU2-9h-Vsj"/>
+                                            <constraint firstItem="6Yq-Nj-zxG" firstAttribute="centerX" secondItem="0Th-oj-zrg" secondAttribute="centerX" id="muO-4f-LDO"/>
                                             <constraint firstAttribute="trailing" secondItem="Kh9-sR-lOW" secondAttribute="trailing" id="sNK-Ly-14g"/>
                                             <constraint firstItem="Kh9-sR-lOW" firstAttribute="leading" secondItem="0Th-oj-zrg" secondAttribute="leading" id="zlS-Ku-mQU"/>
                                         </constraints>
@@ -337,8 +373,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="launch" width="60" height="56"/>
         <namedColor name="primary">
             <color red="0.25499999523162842" green="0.25099998712539673" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondaryColor">
+            <color red="0.25499999523162842" green="0.39599999785423279" blue="0.54100000858306885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textfield-background">
+            <color red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
