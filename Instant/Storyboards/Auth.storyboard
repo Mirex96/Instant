@@ -114,30 +114,30 @@
                                                     <constraint firstAttribute="trailing" secondItem="r2H-GM-Eof" secondAttribute="trailing" constant="25" id="rnK-gy-DeN"/>
                                                 </constraints>
                                             </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="WLg-eg-76S">
-                                                <rect key="frame" x="169" y="80" width="55" height="55"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="05C-HO-KGB">
+                                                <rect key="frame" x="169" y="100" width="55" height="55"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="55" id="f8K-1a-nvw"/>
-                                                    <constraint firstAttribute="height" constant="55" id="oho-j3-lFJ"/>
+                                                    <constraint firstAttribute="width" constant="55" id="gz7-KB-eHl"/>
+                                                    <constraint firstAttribute="height" constant="55" id="snV-U0-5ie"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cER-OB-ren">
-                                                <rect key="frame" x="25" y="155" width="343" height="40.666666666666657"/>
-                                                <fontDescription key="fontDescription" name="SnellRoundhand-Black" family="Snell Roundhand" pointSize="32"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRL-Pc-jdo">
+                                                <rect key="frame" x="25" y="165" width="343" height="40.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="32"/>
                                                 <color key="textColor" name="textfield-background"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" name="primary"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="cER-OB-ren" secondAttribute="trailing" constant="25" id="23R-ux-ryk"/>
-                                            <constraint firstItem="cER-OB-ren" firstAttribute="top" secondItem="WLg-eg-76S" secondAttribute="bottom" constant="20" id="JHD-rj-YhF"/>
+                                            <constraint firstItem="05C-HO-KGB" firstAttribute="top" secondItem="jEx-7v-pme" secondAttribute="top" constant="100" id="3UZ-UR-kUK"/>
+                                            <constraint firstItem="HRL-Pc-jdo" firstAttribute="top" secondItem="05C-HO-KGB" secondAttribute="bottom" constant="10" id="5R0-iX-0bm"/>
+                                            <constraint firstAttribute="trailing" secondItem="HRL-Pc-jdo" secondAttribute="trailing" constant="25" id="5vZ-kM-iCn"/>
                                             <constraint firstAttribute="trailing" secondItem="ONf-9R-ZEs" secondAttribute="trailing" id="Mm4-uS-go4"/>
-                                            <constraint firstItem="cER-OB-ren" firstAttribute="leading" secondItem="jEx-7v-pme" secondAttribute="leading" constant="25" id="b4T-QX-5Uc"/>
+                                            <constraint firstItem="05C-HO-KGB" firstAttribute="centerX" secondItem="jEx-7v-pme" secondAttribute="centerX" id="X8o-Wc-dvV"/>
                                             <constraint firstItem="ONf-9R-ZEs" firstAttribute="leading" secondItem="jEx-7v-pme" secondAttribute="leading" id="goy-29-qh5"/>
                                             <constraint firstAttribute="bottom" secondItem="ONf-9R-ZEs" secondAttribute="bottom" id="oZr-7X-VqR"/>
-                                            <constraint firstItem="WLg-eg-76S" firstAttribute="centerX" secondItem="jEx-7v-pme" secondAttribute="centerX" id="rT1-Oj-Eto"/>
-                                            <constraint firstItem="WLg-eg-76S" firstAttribute="top" secondItem="jEx-7v-pme" secondAttribute="top" constant="80" id="z5d-YJ-v01"/>
+                                            <constraint firstItem="HRL-Pc-jdo" firstAttribute="leading" secondItem="jEx-7v-pme" secondAttribute="leading" constant="25" id="tM1-I9-5hK"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -312,8 +312,8 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0UQ-mM-h1d">
-                                                <rect key="frame" x="25" y="155" width="343" height="41"/>
-                                                <fontDescription key="fontDescription" name="SnellRoundhand-Black" family="Snell Roundhand" pointSize="32"/>
+                                                <rect key="frame" x="25" y="145" width="343" height="41"/>
+                                                <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="32"/>
                                                 <color key="textColor" name="textfield-background"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -322,7 +322,7 @@
                                         <color key="backgroundColor" name="primary"/>
                                         <constraints>
                                             <constraint firstItem="0UQ-mM-h1d" firstAttribute="centerX" secondItem="0Th-oj-zrg" secondAttribute="centerX" id="Gbb-ZQ-z5t"/>
-                                            <constraint firstItem="0UQ-mM-h1d" firstAttribute="top" secondItem="6Yq-Nj-zxG" secondAttribute="bottom" constant="20" id="IgO-wU-3eg"/>
+                                            <constraint firstItem="0UQ-mM-h1d" firstAttribute="top" secondItem="6Yq-Nj-zxG" secondAttribute="bottom" constant="10" id="IgO-wU-3eg"/>
                                             <constraint firstAttribute="bottom" secondItem="Kh9-sR-lOW" secondAttribute="bottom" id="UtP-hF-QFn"/>
                                             <constraint firstItem="0UQ-mM-h1d" firstAttribute="leading" secondItem="NZh-DC-NYB" secondAttribute="leading" constant="25" id="Utd-a9-wDm"/>
                                             <constraint firstItem="6Yq-Nj-zxG" firstAttribute="top" secondItem="0Th-oj-zrg" secondAttribute="top" constant="80" id="Znd-oq-T0W"/>
