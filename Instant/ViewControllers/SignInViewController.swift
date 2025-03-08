@@ -86,8 +86,26 @@ class SignInViewController: UIViewController {
             return
         }
         showLoadingView() // экран загрузки
+        signinUser(email: email, password: password) { [weak self] successe, error in
+            guard let strongSelf = self else { return }
+            if let error = error {
+                print(error)
+                strongSelf.presentErrorAlert(title: "Signin Error", message: error)
+                return
+            }
+            // константа для хранения экземпляра страницы пользователя после успешной регистрации или входа
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeVC = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController")
+            let navVc = UINavigationController(rootViewController: homeVC)
+            let window = UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow } // получили доступ к окну
+            window?.rootViewController = navVc
+        }
+        
+    }
+    
+    func signinUser(email: String, password: String, completion: @escaping (_ successe: Bool, _ error: String?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { _, error in
-            self.removeLoadingView() // убираем экран загрузки
+            //self.removeLoadingView() // убираем экран загрузки
             if let error = error {
                 print(error.localizedDescription)
                 var errorMesage = "Something went wrong. Please try again later"
@@ -102,16 +120,10 @@ class SignInViewController: UIViewController {
                         break
                     }
                 }
-                self.presentErrorAlert(title: "Create Account Failed", message: errorMesage)
+                completion(false, errorMesage)
                 return
             }
-            // константа для хранения экземпляра страницы пользователя после успешной регистрации или входа
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeVC = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController")
-            let navVc = UINavigationController(rootViewController: homeVC)
-            let window = UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow } // получили доступ к окну
-            window?.rootViewController = navVc
-            
+            completion(true, nil)
         }
     }
     
