@@ -115,6 +115,17 @@
                                             <constraint firstAttribute="width" constant="30" id="xWL-04-jUI"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjW-A5-3zM">
+                                        <rect key="frame" x="297" y="20" width="26" height="26"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="xmark" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dismissButtonTapped:" destination="vaq-CO-pCR" eventType="touchUpInside" id="dNB-De-hi3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -123,10 +134,12 @@
                                     <constraint firstAttribute="trailing" secondItem="6z8-MS-cwM" secondAttribute="trailing" constant="20" id="Oit-S1-Rkf"/>
                                     <constraint firstItem="6z8-MS-cwM" firstAttribute="top" secondItem="qbw-kn-g1s" secondAttribute="bottom" constant="20" id="Smp-x0-6CK"/>
                                     <constraint firstAttribute="height" constant="300" id="Wo3-0D-nYb"/>
+                                    <constraint firstAttribute="trailing" secondItem="bjW-A5-3zM" secondAttribute="trailing" constant="20" id="a9M-rE-X9p"/>
                                     <constraint firstItem="6z8-MS-cwM" firstAttribute="leading" secondItem="ygH-PJ-DRs" secondAttribute="leading" constant="20" id="bjJ-bg-Dee"/>
                                     <constraint firstItem="oef-Ez-msC" firstAttribute="bottom" secondItem="qbw-kn-g1s" secondAttribute="bottom" constant="10" id="cyX-v6-oeG"/>
                                     <constraint firstItem="qbw-kn-g1s" firstAttribute="centerX" secondItem="ygH-PJ-DRs" secondAttribute="centerX" id="eUk-ke-PaA"/>
                                     <constraint firstItem="cul-kK-6QU" firstAttribute="leading" secondItem="ygH-PJ-DRs" secondAttribute="leading" constant="20" id="jo0-kY-Xgv"/>
+                                    <constraint firstItem="bjW-A5-3zM" firstAttribute="top" secondItem="ygH-PJ-DRs" secondAttribute="top" constant="20" id="uTX-v7-klm"/>
                                     <constraint firstItem="oef-Ez-msC" firstAttribute="leading" secondItem="qbw-kn-g1s" secondAttribute="trailing" constant="-20" id="wBY-1W-dD9"/>
                                     <constraint firstAttribute="trailing" secondItem="cul-kK-6QU" secondAttribute="trailing" constant="20" id="zLN-u0-Xb8"/>
                                 </constraints>
@@ -173,6 +186,7 @@
         <image name="camera.fill" catalog="system" width="128" height="93"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
