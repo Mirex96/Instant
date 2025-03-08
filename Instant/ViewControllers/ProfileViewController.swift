@@ -41,10 +41,11 @@ class ProfileViewController: UIViewController {
     @objc func presentAvatarOptions() {
         let avatarOptionsSheet = UIAlertController(title: "Change Avatar", message: "Select an option.", preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title:"Camera", style: .default) { _ in
-            
+            self.performSegue(withIdentifier: "UploadSegue", sender: nil)
         }
         let photoAction = UIAlertAction(title: "Photo", style: .default) { _ in
-            
+            self.performSegue(withIdentifier: "UploadSegue", sender: nil)
+
         }
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             

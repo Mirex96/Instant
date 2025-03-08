@@ -1,29 +1,27 @@
-//
-//  UploadViewController.swift
-//  Instant
-//
-//  Created by Станислав Витальевич on 08.03.2025.
-//
-
 import UIKit
 
 class UploadViewController: UIViewController {
 
+    @IBOutlet weak var uploadAvatarLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        uploadAvatarLabel.textColor = .white
+        uploadAvatarLabel.font = Font.body
+        progressView.tintColor = .white
+        progressView.trackTintColor = .lightGray
+        view.backgroundColor = .white.withAlphaComponent(0)
+        let blueEffect = UIBlurEffect(style: .dark)
+        let visualEffectView = UIVisualEffectView(effect: blueEffect)
+        visualEffectView.frame = view.bounds
+        view.addSubview(visualEffectView)
+        view.sendSubviewToBack(visualEffectView)  // отобразится поверх основного вида
+        
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
