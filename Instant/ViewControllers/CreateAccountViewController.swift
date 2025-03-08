@@ -13,7 +13,7 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     var activeTextField: UITextField?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         containerView.clipsToBounds = true
@@ -95,33 +95,43 @@ class CreateAccountViewController: UIViewController {
             presentErrorAlert(title: "Email Required", message: "Please inter an email to continue.")
             return
         }
-        // учетная запись пользователя с помощью Firebase:
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print(error.localizedDescription) // оператор выведет ошибку если она есть, если реультат нулевой
-                self.presentErrorAlert(title: "Create Account Failed", message: "Something went wrong. Please try again later")
+        
+        Database.database().reference().child("username").child(username).observeSingleEvent(of: .value) { snapshot in
+            guard  !snapshot.exists() else {
+                self.presentErrorAlert(title: "Username In Use", message: "Please try a different username")
                 return
             }
-            guard let result = result else {
-                self.presentErrorAlert(title: "Create Account Failed", message: "Something went wrong. Please try again later")
-                return
-            }
-            let userId = result.user.uid
-            let userData: [String: Any] = [
-                "id": userId,
-                "username": username
-            ]
-            Database.database().reference().child("users").child(userId).setValue(userData) // аккаунт создан и имя успешно сохранено в Database
             
-            // константа для хранения экземпляра страницы пользователя после успешной регистрации или входа
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeVC = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController")
-            let navVc = UINavigationController(rootViewController: homeVC)
-            let window = UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow } // получили доступ к окну
-            window?.rootViewController = navVc
+            // учетная запись пользователя с помощью Firebase:
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                if let error = error {
+                    print(error.localizedDescription) // оператор выведет ошибку если она есть, если реультат нулевой
+                    self.presentErrorAlert(title: "Create Account Failed", message: "Something went wrong. Please try again later")
+                    return
+                }
+                guard let result = result else {
+                    self.presentErrorAlert(title: "Create Account Failed", message: "Something went wrong. Please try again later")
+                    return
+                }
+                let userId = result.user.uid
+                let userData: [String: Any] = [
+                    "id": userId,
+                    "username": username
+                ]
+                Database.database().reference().child("users").child(userId).setValue(userData) // аккаунт создан и имя успешно сохранено в Database
+                Database.database().reference().child("username").child(username).setValue(userData)
+                
+                // константа для хранения экземпляра страницы пользователя после успешной регистрации или входа
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let homeVC = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController")
+                let navVc = UINavigationController(rootViewController: homeVC)
+                let window = UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow } // получили доступ к окну
+                window?.rootViewController = navVc
+            }
         }
+        
     }
-
+    
 }
 
 extension CreateAccountViewController: UITextFieldDelegate {
