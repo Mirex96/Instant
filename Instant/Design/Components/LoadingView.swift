@@ -1,20 +1,26 @@
-//
-//  LoadingView.swift
-//  Instant
-//
-//  Created by Станислав Витальевич on 08.03.2025.
-//
-
 import UIKit
 
 class LoadingView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    
+    @IBOutlet var containerView: UIView!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initSubviews()
     }
-    */
-
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder )
+        initSubviews()
+    }
+    
+    func initSubviews() {
+        let nib = UINib(nibName: String(describing: type(of: self)), bundle: nil)
+        nib.instantiate(withOwner: self)
+        containerView.frame = bounds
+        containerView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        addSubview(containerView)
+    }
+    
 }

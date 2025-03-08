@@ -96,17 +96,35 @@ class CreateAccountViewController: UIViewController {
             return
         }
         
+       
+        showLoadingView()
         Database.database().reference().child("username").child(username).observeSingleEvent(of: .value) { snapshot in
             guard  !snapshot.exists() else {
                 self.presentErrorAlert(title: "Username In Use", message: "Please try a different username")
+                self.removeLoadingView()
                 return
             }
             
             // учетная запись пользователя с помощью Firebase:
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                self.removeLoadingView()
                 if let error = error {
                     print(error.localizedDescription) // оператор выведет ошибку если она есть, если реультат нулевой
-                    self.presentErrorAlert(title: "Create Account Failed", message: "Something went wrong. Please try again later")
+                    var errorMesage = "Something went wrong. Please try again later"
+                    if let nsError = error as NSError? {
+                        let authError = AuthErrorCode(rawValue: nsError.code)
+                        switch authError {
+                        case .emailAlreadyInUse:
+                            errorMesage = "Email already in use"
+                        case .invalidEmail:
+                            errorMesage = "Invalid Email"
+                        case .weakPassword:
+                            errorMesage = "Weak password"
+                        default:
+                            break
+                        }
+                    }
+                    self.presentErrorAlert(title: "Create Account Failed", message: errorMesage)
                     return
                 }
                 guard let result = result else {
@@ -131,6 +149,8 @@ class CreateAccountViewController: UIViewController {
         }
         
     }
+    
+
     
 }
 

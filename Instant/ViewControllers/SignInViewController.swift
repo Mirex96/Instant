@@ -27,6 +27,7 @@ class SignInViewController: UIViewController {
         passwordTextField.delegate = self
         let backgroundTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)) // убираем клавиатуру по тапу на экран
         view.addGestureRecognizer(backgroundTap)
+        
     }
     
     override func viewDidLayoutSubviews() {
