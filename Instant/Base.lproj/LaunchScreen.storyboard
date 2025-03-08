@@ -24,7 +24,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6H-FK-L51">
-                                <rect key="frame" x="25" y="481" width="343" height="38"/>
+                                <rect key="frame" x="25" y="466" width="343" height="38"/>
                                 <fontDescription key="fontDescription" name="SnellRoundhand-Black" family="Snell Roundhand" pointSize="30"/>
                                 <color key="textColor" name="textfield-backgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                         <constraints>
                             <constraint firstItem="lcO-KH-MMQ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="6vk-jh-yvZ"/>
                             <constraint firstItem="f6H-FK-L51" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="8Un-XY-hxN"/>
-                            <constraint firstItem="f6H-FK-L51" firstAttribute="top" secondItem="lcO-KH-MMQ" secondAttribute="bottom" constant="25" id="K58-lW-ZeR"/>
+                            <constraint firstItem="f6H-FK-L51" firstAttribute="top" secondItem="lcO-KH-MMQ" secondAttribute="bottom" constant="10" id="K58-lW-ZeR"/>
                             <constraint firstItem="lcO-KH-MMQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="O5U-cF-SB7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="f6H-FK-L51" secondAttribute="trailing" constant="25" id="kJ6-Rj-Yvr"/>
                         </constraints>
