@@ -96,66 +96,86 @@ class CreateAccountViewController: UIViewController {
             return
         }
         
-       
         showLoadingView()
-        Database.database().reference().child("username").child(username).observeSingleEvent(of: .value) { snapshot in
-            guard  !snapshot.exists() else {
+        checkIfExists(username: username) { userameExists in
+            if !userameExists {
+                self.createUser(username: username, email: email, password: password) { result, error in
+                    if let error = error {
+                        self.presentErrorAlert(title: "Create Account Failed", message: error)
+                        return
+                    }
+                    guard let result = result else {
+                        self.presentErrorAlert(title: "Create Account Failed", message: "Please try again later")
+                        return
+                    }
+                    let userId = result.user.uid
+                    let userData: [String: Any] = [
+                        "id": userId,
+                        "username": username
+                    ]
+                    Database.database().reference().child("users").child(userId).setValue(userData) // аккаунт создан и имя успешно сохранено в Database
+                    Database.database().reference().child("username").child(username).setValue(userData)
+                    
+                    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() // запрос на изменение профиля
+                    changeRequest?.displayName = username // в логине появится наше имя
+                    changeRequest?.commitChanges()
+
+                    // константа для хранения экземпляра страницы пользователя после успешной регистрации или входа
+                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homeVC = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController")
+                    let navVc = UINavigationController(rootViewController: homeVC)
+                    let window = UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow } // получили доступ к окну
+                    window?.rootViewController = navVc
+                }
+            } else {
                 self.presentErrorAlert(title: "Username In Use", message: "Please try a different username")
                 self.removeLoadingView()
-                return
-            }
-            
-            // учетная запись пользователя с помощью Firebase:
-            Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                self.removeLoadingView()
-                if let error = error {
-                    print(error.localizedDescription) // оператор выведет ошибку если она есть, если реультат нулевой
-                    var errorMesage = "Something went wrong. Please try again later"
-                    if let nsError = error as NSError? {
-                        let authError = AuthErrorCode(rawValue: nsError.code)
-                        switch authError {
-                        case .emailAlreadyInUse:
-                            errorMesage = "Email already in use"
-                        case .invalidEmail:
-                            errorMesage = "Invalid Email"
-                        case .weakPassword:
-                            errorMesage = "Weak password"
-                        default:
-                            break
-                        }
-                    }
-                    self.presentErrorAlert(title: "Create Account Failed", message: errorMesage)
-                    return
-                }
-                guard let result = result else {
-                    self.presentErrorAlert(title: "Create Account Failed", message: "Something went wrong. Please try again later")
-                    return
-                }
-                let userId = result.user.uid
-                let userData: [String: Any] = [
-                    "id": userId,
-                    "username": username
-                ]
-                Database.database().reference().child("users").child(userId).setValue(userData) // аккаунт создан и имя успешно сохранено в Database
-                Database.database().reference().child("username").child(username).setValue(userData)
-                
-                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() // запрос на изменение профиля
-                changeRequest?.displayName = username // в логине появится наше имя
-                changeRequest?.commitChanges()
-                
-                // константа для хранения экземпляра страницы пользователя после успешной регистрации или входа
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeVC = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController")
-                let navVc = UINavigationController(rootViewController: homeVC)
-                let window = UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow } // получили доступ к окну
-                window?.rootViewController = navVc
             }
         }
         
     }
     
+    // проверяем существует ли имя пользователя
+    func checkIfExists(username: String, completion: @escaping (_ result: Bool) -> Void) {
+        Database.database().reference().child("username").child(username).observeSingleEvent(of: .value) { snapshot in
+            guard  !snapshot.exists() else {
+                completion(true)
+                return
+            }
+            completion(false)
+        }
+    }
 
-    
+    func createUser(username: String, email: String, password: String, completion:  @escaping (_ result: AuthDataResult?, _ error: String?) -> Void) {
+        // учетная запись пользователя с помощью Firebase:
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            self.removeLoadingView()
+            if let error = error {
+                print(error.localizedDescription) // оператор выведет ошибку если она есть, если реультат нулевой
+                var errorMesage = "Something went wrong. Please try again later"
+                if let nsError = error as NSError? {
+                    let authError = AuthErrorCode(rawValue: nsError.code)
+                    switch authError {
+                    case .emailAlreadyInUse:
+                        errorMesage = "Email already in use"
+                    case .invalidEmail:
+                        errorMesage = "Invalid Email"
+                    case .weakPassword:
+                        errorMesage = "Weak password"
+                    default:
+                        break
+                    }
+                }
+                completion(nil, errorMesage)
+                return
+            }
+            guard let result = result else {
+                completion(nil, "Something went wrong. Please try again later")
+                return
+            }
+            completion(result, nil)
+        }
+    }
 }
 
 extension CreateAccountViewController: UITextFieldDelegate {
