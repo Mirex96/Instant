@@ -60,7 +60,7 @@
                                                             <constraint firstAttribute="height" constant="45" id="oKH-y1-NpB"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjr-Or-Vdg" customClass="PrimaryButton" customModule="Instant" customModuleProvider="target">
                                                         <rect key="frame" x="25" y="328" width="343" height="45"/>

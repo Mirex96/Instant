@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 
 class SignInViewController: UIViewController {
     
@@ -76,7 +77,42 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signinButtonTapped(_ sender: Any) {
-        
+        guard let password = passwordTextField.text else {
+            presentErrorAlert(title: "Password Required", message: "Please inter a password to continue.")
+            return
+        }
+        guard let email = emailTextField.text else {
+            presentErrorAlert(title: "Email Required", message: "Please inter an email to continue.")
+            return
+        }
+        showLoadingView() // экран загрузки
+        Auth.auth().signIn(withEmail: email, password: password) { _, error in
+            self.removeLoadingView() // убираем экран загрузки
+            if let error = error {
+                print(error.localizedDescription)
+                var errorMesage = "Something went wrong. Please try again later"
+                if let nsError = error as NSError? {
+                    let authError = AuthErrorCode(rawValue: nsError.code)
+                    switch authError {
+                    case .userNotFound:
+                        errorMesage = "Email/Password does not match any records"
+                    case .invalidEmail:
+                        errorMesage = "Invalid Email"
+                    default:
+                        break
+                    }
+                }
+                self.presentErrorAlert(title: "Create Account Failed", message: errorMesage)
+                return
+            }
+            // константа для хранения экземпляра страницы пользователя после успешной регистрации или входа
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeVC = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController")
+            let navVc = UINavigationController(rootViewController: homeVC)
+            let window = UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow } // получили доступ к окну
+            window?.rootViewController = navVc
+            
+        }
     }
     
 }
