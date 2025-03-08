@@ -139,6 +139,10 @@ class CreateAccountViewController: UIViewController {
                 Database.database().reference().child("users").child(userId).setValue(userData) // аккаунт создан и имя успешно сохранено в Database
                 Database.database().reference().child("username").child(username).setValue(userData)
                 
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() // запрос на изменение профиля
+                changeRequest?.displayName = username // в логине появится наше имя
+                changeRequest?.commitChanges()
+                
                 // константа для хранения экземпляра страницы пользователя после успешной регистрации или входа
                 let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let homeVC = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController")
