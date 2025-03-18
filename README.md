@@ -1,6 +1,6 @@
 # Instant App
 
-This is an IOS app built with swift and UIKit. The app helps you train at home. Depending on the selected training mode and intensity. The fitness app includes Lottie animations for ease of use. The application includes the actual process of user registration in the messenger account. Log out of your account. All data is saved in Firebase, so the user can not worry about the loss of his data. The user is also protected from entering incorrect passwords, names, and emails.
+This is an IOS app built with swift and UIKit. The application includes the actual process of user registration in the messenger account. Log out of your account. All data is saved in Firebase, so the user can not worry about the loss of his data. The user is also protected from entering incorrect passwords, names, and emails.
 
 ## Documentation
 
